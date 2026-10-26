@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YOUR NAME | Automotive, Mechatronics & Automation</title>
+<meta name="description" content="Automotive technician and mechatronics engineer: advanced diagnostics, PLCs, computer vision, industrial automation.">
+<style>
+  :root{
+    --bg:#0a0e14; --panel:#101620; --line:#1f2a3a; --text:#d6e2f0; --muted:#7d8ea3;
+    --accent:#00e5a8; --accent2:#ffb020; --grid:rgba(0,229,168,.05);
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  [data-theme="light"]{
+    --bg:#f3f6f9; --panel:#ffffff; --line:#d5dde6; --text:#142033; --muted:#5b6b80;
+    --accent:#007a5a; --accent2:#b86e00; --grid:rgba(0,122,90,.07);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--text); font-family:var(--sans); line-height:1.6;
+    background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:32px 32px;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px}
+  .logo{font-family:var(--mono);font-weight:700;color:var(--accent)}
+  .links{display:flex;gap:18px;align-items:center;font-family:var(--mono);font-size:13px;color:var(--muted)}
+  .links a:hover{color:var(--accent)}
+  .btn{font-family:var(--mono);font-size:13px;padding:8px 14px;border:1px solid var(--accent);color:var(--accent);border-radius:6px;background:transparent;cursor:pointer;transition:.2s}
+  .btn:hover{background:var(--accent);color:var(--bg)}
+  .icon-btn{font-family:var(--mono);font-size:12px;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--muted);cursor:pointer}
+  @media(max-width:640px){.links a.hide-m{display:none}}
+
+  /* HERO */
+  .hero{padding:80px 0 56px}
+  .tag{font-family:var(--mono);font-size:13px;color:var(--accent)}
+  h1{font-size:clamp(30px,6vw,52px);line-height:1.15;margin:14px 0 18px;letter-spacing:-.02em}
+  h1 em{font-style:normal;color:var(--accent)}
+  .lead{max-width:680px;color:var(--muted);font-size:17px}
+  .cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:26px}
+  .avail{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);margin-right:6px;animation:pulse 1.8s infinite}
+  @keyframes pulse{50%{opacity:.25}}
+  .status{margin-top:34px;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:8px;font-family:var(--mono);font-size:12.5px;color:var(--muted);display:grid;gap:4px}
+  .status b{color:var(--accent2);font-weight:600}
+
+  /* SECTIONS */
+  section{padding:56px 0}
+  h2{font-family:var(--mono);font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+  .sub{color:var(--muted);margin-bottom:26px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px;cursor:pointer;transition:.2s;text-align:left;color:inherit;font:inherit}
+  .card:hover{border-color:var(--accent);transform:translateY(-3px)}
+  .code{font-family:var(--mono);font-size:11.5px;color:var(--accent2)}
+  .card h3{font-size:18px;margin:8px 0}
+  .card p{color:var(--muted);font-size:14.5px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+  .chip{font-family:var(--mono);font-size:11.5px;padding:3px 9px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
+  .more{font-family:var(--mono);font-size:12.5px;color:var(--accent)}
+
+  /* SKILLS */
+  .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+  .skill-box{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px}
+  .skill-box h4{font-family:var(--mono);font-size:12.5px;color:var(--accent2);margin-bottom:10px;font-weight:600}
+
+  /* TIMELINE */
+  .tl{border-left:2px solid var(--line);margin-left:6px}
+  .tl-item{position:relative;padding:0 0 28px 22px}
+  .tl-item::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+  .when{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .tl-item h3{font-size:17px;margin:2px 0}
+  .tl-item .org{color:var(--accent);font-size:14px}
+  .tl-item ul{margin:8px 0 0 18px;color:var(--muted);font-size:14.5px}
+
+  /* INTERESTS */
+  .rot{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+  .rot div{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px;font-size:14px}
+  .rot small{display:block;font-family:var(--mono);font-size:11px;color:var(--accent2);margin-bottom:4px}
+
+  /* GALLERY */
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+  .filters button{font-family:var(--mono);font-size:12px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--panel);color:var(--muted);cursor:pointer}
+  .filters button.active,.filters button:hover{border-color:var(--accent);color:var(--accent)}
+  .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+  .shot{position:relative;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel);cursor:pointer;padding:0;aspect-ratio:4/3;display:block;width:100%}
+  .shot img{width:100%;height:100%;object-fit:cover;display:block;transition:.3s}
+  .shot:hover img{transform:scale(1.05)}
+  .shot:hover{border-color:var(--accent)}
+  .shot .cap{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 10px;background:linear-gradient(transparent,rgba(0,0,0,.85));color:#fff;font-size:13px;text-align:left}
+  .shot .cap small{display:block;font-family:var(--mono);font-size:10.5px;color:var(--accent2)}
+  .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;flex-direction:column;gap:12px;padding:20px;z-index:60}
+  .lightbox.open{display:flex}
+  .lightbox img{max-width:100%;max-height:78vh;border-radius:8px;border:1px solid var(--line)}
+  .lightbox p{color:#d6e2f0;font-size:14px;text-align:center}
+  .lb-nav{display:flex;gap:10px}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line);padding:36px 0 56px;color:var(--muted);font-size:14px}
+  footer .row{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center}
+  footer a{color:var(--accent)}
+
+  /* MODAL */
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+  .modal.open{display:flex}
+  .sheet{background:var(--panel);border:1px solid var(--accent);border-radius:12px;max-width:560px;width:100%;padding:26px;max-height:85vh;overflow:auto}
+  .sheet h3{font-size:22px;margin:6px 0 10px}
+  .sheet h5{font-family:var(--mono);font-size:12px;color:var(--accent2);margin:16px 0 4px;text-transform:uppercase;letter-spacing:.08em}
+  .sheet p,.sheet li{color:var(--muted);font-size:15px}
+  .sheet ul{margin-left:18px}
+  .close{float:right}
+
+  /* REVEAL */
+  .reveal{opacity:0;transform:translateY(18px);transition:.6s}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.dot{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#" class="logo">&gt; YOUR_NAME_</a>
+    <div class="links">
+      <a href="#work" class="hide-m">Work</a>
+      <a href="#gallery" class="hide-m">Gallery</a>
+      <a href="#skills" class="hide-m">Skills</a>
+      <a href="#experience" class="hide-m">Experience</a>
+      <a href="resume.pdf" class="btn">Resume</a>
+      <button class="icon-btn" id="theme" aria-label="Toggle theme">Dark</button>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <header class="hero">
+    <div class="tag">Hi, I'm YOUR NAME · Automotive Technician &amp; Mechatronics Engineer</div>
+    <h1>I diagnose vehicles, <em>program PLCs</em>, &amp; teach machines to see.</h1>
+    <p class="lead">
+      Automotive technician and mechatronics specialist focused on advanced diagnostics,
+      industrial automation, and computer vision. I bridge the shop floor and the control
+      cabinet: from scan-tool data and CAN bus faults to ladder logic and vision-guided robots.
+    </p>
+    <div class="cta">
+      <a class="btn" href="mailto:you@example.com">Email me →</a>
+      <span class="avail"><span class="dot"></span>Available for automation &amp; diagnostics roles</span>
+      <span class="avail" id="clock">Local time: …</span>
+    </div>
+    <div class="status">
+      <div>STATUS: <b>● ONLINE</b></div>
+      <div>DIAGNOSTICS: OBD-II · CAN BUS · OSCILLOSCOPE · SCAN TOOLS</div>
+      <div>CONTROLS: PLC · HMI · SENSORS · ROBOTICS · OPENCV</div>
+    </div>
+  </header>
+
+  <section id="work">
+    <h2>// Featured Work</h2>
+    <p class="sub">Click a module to inspect.</p>
+    <div class="grid" id="projects"></div>
+  </section>
+
+  <section id="gallery">
+    <h2>// Gallery</h2>
+    <p class="sub">Photos from the shop floor, the bench, and the control cabinet.</p>
+    <div class="filters" id="filters"></div>
+    <div class="gallery" id="gallery-grid"></div>
+  </section>
+
+  <section id="skills">
+    <h2>// Skills Stack</h2>
+    <p class="sub">What I work with.</p>
+    <div class="skills reveal">
+      <div class="skill-box"><h4>AUTOMOTIVE</h4><div class="chips">
+        <span class="chip">Advanced Diagnostics</span><span class="chip">CAN / LIN</span><span class="chip">OBD-II</span><span class="chip">Oscilloscope</span><span class="chip">Hybrid / EV Systems</span><span class="chip">ADAS Calibration</span></div></div>
+      <div class="skill-box"><h4>CONTROLS &amp; AUTOMATION</h4><div class="chips">
+        <span class="chip">PLCs</span><span class="chip">Ladder Logic</span><span class="chip">HMI / SCADA</span><span class="chip">Sensors &amp; Actuators</span><span class="chip">Industrial Networks</span></div></div>
+      <div class="skill-box"><h4>ROBOTICS &amp; VISION</h4><div class="chips">
+        <span class="chip">Computer Vision</span><span class="chip">OpenCV</span><span class="chip">Python</span><span class="chip">Robot Programming</span><span class="chip">Motion Control</span></div></div>
+      <div class="skill-box"><h4>PROFESSIONAL</h4><div class="chips">
+        <span class="chip">Troubleshooting</span><span class="chip">Root-Cause Analysis</span><span class="chip">Documentation</span><span class="chip">Safety (LOTO)</span></div></div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>// Experience &amp; Education</h2>
+    <p class="sub">Verified timeline.</p>
+    <div class="tl reveal">
+      <div class="tl-item">
+        <div class="when">2024 to Present</div>
+        <h3>Job Title</h3><div class="org">Company Name</div>
+        <ul><li>Describe a result, not a duty: what you fixed, built, or improved.</li><li>Add a number if you can (downtime cut, cycle time, accuracy).</li></ul>
+      </div>
+      <div class="tl-item">
+        <div class="when">2021 to 2024</div>
+        <h3>Automotive Technician</h3><div class="org">Shop / Dealership Name</div>
+        <ul><li>Diagnosed complex electrical and drivability faults using scan tools and scopes.</li></ul>
+      </div>
+      <div class="tl-item">
+        <div class="when">Year</div>
+        <h3>Degree / Certification</h3><div class="org">School Name</div>
+        <ul><li>Mechatronics, robotics, controls coursework or ASE / PLC certifications.</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="now">
+    <h2>// Lately I've Been Into</h2>
+    <p class="sub">Current rotation.</p>
+    <div class="rot reveal">
+      <div><small>ON THE BENCH</small>A project you're tinkering with</div>
+      <div><small>LEARNING</small>Vision-guided pick &amp; place</div>
+      <div><small>ON REPEAT ♫</small>Your music here</div>
+      <div><small>OFF HOURS</small>Cars, sport, builds</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap row">
+    <div><b>YOUR NAME</b> · <a href="mailto:you@example.com">you@example.com</a></div>
+    <div><a href="resume.pdf">Download PDF</a> · <a href="https://www.linkedin.com/in/YOUR-HANDLE" rel="noopener">LinkedIn ↗</a> · <a href="https://github.com/YOUR-HANDLE" rel="noopener">GitHub ↗</a></div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="m-title">
+  <div class="sheet">
+    <button class="icon-btn close" id="close">ESC ✕</button>
+    <div class="code" id="m-code"></div>
+    <h3 id="m-title"></h3>
+    <div class="chips" id="m-tags"></div>
+    <h5>Problem</h5><p id="m-problem"></p>
+    <h5>What I did</h5><ul id="m-did"></ul>
+    <h5>Result</h5><p id="m-result"></p>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <img id="lb-img" alt="">
+  <p id="lb-cap"></p>
+  <div class="lb-nav">
+    <button class="icon-btn" id="lb-prev">← Prev</button>
+    <button class="icon-btn" id="lb-close">Close ✕</button>
+    <button class="icon-btn" id="lb-next">Next →</button>
+  </div>
+</div>
+
+<script>
+/* ====== EDIT YOUR PROJECTS HERE ====== */
+const projects = [
+  {
+    code:"DIAG_01 // CAN_BUS", year:"2025",
+    title:"Intermittent CAN Bus Fault Diagnosis",
+    short:"Traced a no-communication fault across multiple modules using a scope and network topology analysis.",
+    tags:["CAN Bus","Oscilloscope","Diagnostics"],
+    problem:"A vehicle threw random U-codes and lost module communication with no clear pattern.",
+    did:["Mapped the network topology and checked termination resistance.","Captured CAN High/Low waveforms under load.","Isolated a chafed harness section causing the intermittent short."],
+    result:"Repaired in one visit; documented the fault pattern for the shop's knowledge base."
+  },
+  {
+    code:"PLC_02 // SORT_CELL", year:"2025",
+    title:"PLC-Controlled Sorting Cell",
+    short:"Designed ladder logic and an HMI for a conveyor sorting station with sensor feedback.",
+    tags:["PLC","Ladder Logic","HMI","Sensors"],
+    problem:"Parts needed to be sorted automatically by type with safe start/stop and fault handling.",
+    did:["Wrote ladder logic with a state machine and E-stop interlocks.","Built an HMI screen with counters and alarms.","Commissioned and tuned sensor timing."],
+    result:"Reliable cycle with clear operator fault messages."
+  },
+  {
+    code:"CV_03 // VISION_QC", year:"2026",
+    title:"Computer Vision Inspection",
+    short:"Python + OpenCV pipeline to detect defects and trigger a reject signal to a PLC.",
+    tags:["OpenCV","Python","Computer Vision","Automation"],
+    problem:"Manual visual inspection was slow and inconsistent.",
+    did:["Built image preprocessing and defect detection.","Sent pass/fail output to a PLC over a digital signal or industrial protocol.","Tested under varied lighting."],
+    result:"Faster, repeatable inspection with logged results."
+  },
+  {
+    code:"ROB_04 // PICK_PLACE", year:"2026",
+    title:"Vision-Guided Robot Pick & Place",
+    short:"Combined camera calibration with robot motion control to pick parts from a moving or random layout.",
+    tags:["Robotics","Motion Control","Calibration"],
+    problem:"Parts arrived in unpredictable positions.",
+    did:["Calibrated camera-to-robot coordinates.","Programmed pick/place paths with collision checks.","Integrated cell safety and reset logic."],
+    result:"Consistent picks with minimal operator intervention."
+  },
+  {
+    code:"EV_05 // HV_SYSTEMS", year:"2025",
+    title:"Hybrid / EV Battery System Diagnosis",
+    short:"Diagnosed a high-voltage battery warning using live data, isolation tests, and service procedures.",
+    tags:["Hybrid/EV","High Voltage","Scan Tool"],
+    problem:"A hybrid vehicle showed a hybrid system warning and reduced power.",
+    did:["Followed HV safety procedure and PPE requirements.","Read battery cell voltage balance and insulation resistance data.","Identified the failing module and verified the repair with a road test."],
+    result:"Fault confirmed and cleared; full diagnostic notes written for the customer."
+  },
+  {
+    code:"ADAS_06 // CALIBRATION", year:"2026",
+    title:"ADAS Camera & Sensor Calibration",
+    short:"Performed static and dynamic calibration after windshield and bumper repairs.",
+    tags:["ADAS","Calibration","Computer Vision"],
+    problem:"Lane-assist and collision-warning systems needed recalibration after body work.",
+    did:["Set up targets and levelled the vehicle per OEM specs.","Ran calibration routines and verified with a test drive.","Recorded before/after system status."],
+    result:"All driver-assist features restored and verified."
+  },
+  {
+    code:"SAFE_07 // TROUBLESHOOT", year:"2026",
+    title:"Machine Fault Troubleshooting & Documentation",
+    short:"Built a simple fault-finding guide for a production machine's most frequent stops.",
+    tags:["Root Cause","Documentation","Industrial Automation"],
+    problem:"Operators lost time on repeated, hard-to-trace stoppages.",
+    did:["Logged stops and grouped them by cause.","Traced sensor and wiring issues with a multimeter and PLC diagnostics.","Wrote a one-page flowchart for common faults."],
+    result:"Shorter downtime and a reusable guide for the team."
+  }
+];
+/* ===================================== */
+
+/* ====== EDIT YOUR GALLERY HERE ======
+   1. Make a folder called "images" next to index.html and drop your photos in.
+   2. Set src to the path, e.g. "images/scope-capture.jpg".
+   3. Leave src empty ("") to show a placeholder tile until you add a photo.
+   Categories become filter buttons automatically. */
+const gallery = [
+  { src:"", cat:"Automotive",  title:"Oscilloscope CAN capture",    cap:"CAN High/Low waveform during a fault" },
+  { src:"", cat:"Automotive",  title:"Engine bay diagnostics",      cap:"Live data and testing at the bench" },
+  { src:"", cat:"Automotive",  title:"Hybrid battery service",      cap:"HV isolation testing" },
+  { src:"", cat:"Controls",    title:"PLC cabinet",                 cap:"Wiring and I/O layout" },
+  { src:"", cat:"Controls",    title:"HMI screen",                  cap:"Operator interface for the sorting cell" },
+  { src:"", cat:"Robotics",    title:"Robot cell",                  cap:"Pick-and-place setup" },
+  { src:"", cat:"Vision",      title:"Defect detection output",     cap:"OpenCV pass/fail overlay" },
+  { src:"", cat:"Vision",      title:"Camera calibration",          cap:"Checkerboard calibration run" }
+];
+/* ===================================== */
+
+/* Placeholder tile generator (used when src is empty) */
+function ph(label){
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+    <rect width="800" height="600" fill="#101620"/>
+    <g stroke="#00e5a8" stroke-opacity=".12">${Array.from({length:20},(_,i)=>`<line x1="${i*40}" y1="0" x2="${i*40}" y2="600"/>`).join('')}${Array.from({length:15},(_,i)=>`<line x1="0" y1="${i*40}" x2="800" y2="${i*40}"/>`).join('')}</g>
+    <rect x="270" y="190" width="260" height="170" rx="12" fill="none" stroke="#00e5a8" stroke-width="3"/>
+    <circle cx="350" cy="250" r="18" fill="none" stroke="#00e5a8" stroke-width="3"/>
+    <path d="M285 345 L350 290 L400 330 L450 280 L515 345" fill="none" stroke="#00e5a8" stroke-width="3"/>
+    <text x="400" y="420" fill="#7d8ea3" font-family="monospace" font-size="22" text-anchor="middle">ADD PHOTO</text>
+    <text x="400" y="455" fill="#ffb020" font-family="monospace" font-size="18" text-anchor="middle">${label.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</text>
+  </svg>`;
+  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+}
+const imgSrc = g => g.src || ph(g.title);
+
+/* Gallery render + filters */
+const gGrid = document.getElementById('gallery-grid'), gFilters = document.getElementById('filters');
+let activeCat = 'All', visible = [];
+function renderGallery(){
+  visible = gallery.filter(g => activeCat==='All' || g.cat===activeCat);
+  gGrid.innerHTML = '';
+  visible.forEach((g,i)=>{
+    const b = document.createElement('button');
+    b.className = 'shot';
+    b.innerHTML = `<img loading="lazy" src="${imgSrc(g)}" alt="${g.title}"><div class="cap"><small>${g.cat}</small>${g.title}</div>`;
+    b.addEventListener('click',()=>openLB(i));
+    gGrid.appendChild(b);
+  });
+  [...gFilters.children].forEach(c=>c.classList.toggle('active', c.dataset.cat===activeCat));
+}
+['All',...new Set(gallery.map(g=>g.cat))].forEach(c=>{
+  const b = document.createElement('button');
+  b.textContent = c; b.dataset.cat = c;
+  b.addEventListener('click',()=>{ activeCat=c; renderGallery(); });
+  gFilters.appendChild(b);
+});
+renderGallery();
+
+/* Lightbox */
+const lb = document.getElementById('lightbox'); let lbIndex = 0;
+function showLB(){
+  const g = visible[lbIndex];
+  document.getElementById('lb-img').src = imgSrc(g);
+  document.getElementById('lb-img').alt = g.title;
+  document.getElementById('lb-cap').textContent = g.title + ' · ' + g.cap;
+}
+function openLB(i){ lbIndex = i; showLB(); lb.classList.add('open'); }
+function closeLB(){ lb.classList.remove('open'); }
+function stepLB(d){ lbIndex = (lbIndex + d + visible.length) % visible.length; showLB(); }
+document.getElementById('lb-close').addEventListener('click',closeLB);
+document.getElementById('lb-prev').addEventListener('click',()=>stepLB(-1));
+document.getElementById('lb-next').addEventListener('click',()=>stepLB(1));
+lb.addEventListener('click',e=>{ if(e.target===lb) closeLB(); });
+document.addEventListener('keydown',e=>{
+  if(!lb.classList.contains('open')) return;
+  if(e.key==='Escape') closeLB();
+  if(e.key==='ArrowLeft') stepLB(-1);
+  if(e.key==='ArrowRight') stepLB(1);
+});
+
+const grid = document.getElementById('projects');
+projects.forEach((p,i)=>{
+  const b = document.createElement('button');
+  b.className = 'card reveal';
+  b.innerHTML = `<div class="code">${p.code} · ${p.year}</div><h3>${p.title}</h3><p>${p.short}</p>
+    <div class="chips">${p.tags.map(t=>`<span class="chip">${t}</span>`).join('')}</div><span class="more">Inspect →</span>`;
+  b.addEventListener('click',()=>openModal(i));
+  grid.appendChild(b);
+});
+
+const modal = document.getElementById('modal');
+function openModal(i){
+  const p = projects[i];
+  document.getElementById('m-code').textContent = p.code;
+  document.getElementById('m-title').textContent = p.title;
+  document.getElementById('m-tags').innerHTML = p.tags.map(t=>`<span class="chip">${t}</span>`).join('');
+  document.getElementById('m-problem').textContent = p.problem;
+  document.getElementById('m-did').innerHTML = p.did.map(d=>`<li>${d}</li>`).join('');
+  document.getElementById('m-result').textContent = p.result;
+  modal.classList.add('open');
+}
+function closeModal(){ modal.classList.remove('open'); }
+document.getElementById('close').addEventListener('click',closeModal);
+modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+
+/* Theme toggle (safe storage) */
+const root = document.documentElement, tbtn = document.getElementById('theme');
+function setTheme(t){ root.dataset.theme = t; tbtn.textContent = t==='dark' ? 'Dark' : 'Light'; try{localStorage.setItem('theme',t)}catch(e){} }
+let saved=null; try{saved=localStorage.getItem('theme')}catch(e){}
+setTheme(saved || (matchMedia('(prefers-color-scheme: light)').matches ? 'light':'dark'));
+tbtn.addEventListener('click',()=>setTheme(root.dataset.theme==='dark'?'light':'dark'));
+
+/* Live clock: change the timeZone to yours */
+const TZ = 'America/Chicago', TZ_LABEL = 'Your City';
+function tick(){
+  const t = new Intl.DateTimeFormat('en-US',{hour:'2-digit',minute:'2-digit',timeZone:TZ}).format(new Date());
+  document.getElementById('clock').textContent = `My Time (${TZ_LABEL}): ${t}`;
+}
+tick(); setInterval(tick,30000);
+
+/* Scroll reveal */
+const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target);} }),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
